@@ -201,8 +201,7 @@ Random Forest feature importance was used to identify the most influential words
 
 SHAP values were used to provide global explanations for model behavior.
 
-<img width="1758" height="1061" alt="image" src="https://github.com/user-attachments/assets/6d532c28-3961-48d6-ac09-edf2ec30958e" />
-
+<img width="1938" height="1516" alt="image" src="https://github.com/user-attachments/assets/5edec3c1-908a-4308-9edf-37c6aa06fbf4" />
 
 Examples:
 
@@ -218,7 +217,6 @@ LIME was applied for local interpretability to explain individual predictions ge
 <img width="2820" height="1544" alt="image" src="https://github.com/user-attachments/assets/9466b9e4-8a05-4341-a6eb-f20d9e76568e" />
 
 <img width="2696" height="1518" alt="image" src="https://github.com/user-attachments/assets/389f8e98-2539-4d89-b7d3-b243b6449872" />
-
 
 ---
 
