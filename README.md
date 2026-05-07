@@ -1,5 +1,254 @@
-# Text-Classification
-End-to-end data analysis and machine learning project on business reviews using MongoDB and Python. Includes data preprocessing, predictive modeling, and explainable AI (XAI) techniques to interpret model decisions.
+# Text-Classification & Sentiment Analysis
 
---- 
+The project focuses on **sentiment classification of hotel reviews** using multiple Natural Language Processing (NLP) approaches, including:
+
+* Lexicon-based models
+* Pre-trained transformer models
+* Classical Machine Learning techniques
+
+The goal is to compare different text classification strategies, evaluate their effectiveness on a custom review dataset, and assess the reasoning behind model predictions through **Explainable AI** techniques.
+
+---
+
+# Project Overview
+
+The project analyzes hotel reviews collected from multiple U.S. locations and performs:
+
+* Text preprocessing and cleaning
+* Binary sentiment classification
+* Embedding generation
+* Model comparison
+* Explainability analysis
+
+The study compares traditional NLP approaches with modern transformer-based architectures in order to evaluate trade-offs between interpretability and predictive performance.
+
+---
+
+# Dataset Description
+
+The original dataset was provided by the university professors and consists of several JSON files containing hotel reviews.
+
+## Available Fields
+
+| Field            | Description                      |
+| ---------------- | -------------------------------- |
+| `Ratings`        | Numeric ratings from 1 to 5      |
+| `AuthorLocation` | City where the review was posted |
+| `Title`          | Review title                     |
+| `Author`         | Review author                    |
+| `ReviewID`       | Unique review identifier         |
+| `Content`        | Review text                      |
+| `Date`           | Review date                      |
+
+## Time Range
+
+| Information    | Value             |
+| -------------- | ----------------- |
+| First review   | August 1, 2001    |
+| Last review    | September 9, 2012 |
+| Selected years | 2008 – 2012       |
+
+## Selected Locations
+
+The project retained the three U.S. locations with the highest number of reviews after performing:
+
+* Location normalization
+* City/state extraction
+* U.S. state validation
+* Review counting by location
+
+---
+
+# Sentiment Labeling
+
+The ratings were converted into **sentiment labels**.
+
+## Label Definition
+
+| Rating | Sentiment         |
+| ------ | ----------------- |
+| `≥ 4`  | Positive          |
+| `≤ 2`  | Negative          |
+| `= 3`  | Neutral (removed) |
+
+## Class Distribution
+
+| Sentiment | Percentage |
+| --------- | ---------- |
+| Positive  | 71.5%      |
+| Negative  | 15.3%      |
+| Neutral   | 13.2%      |
+
+To address class imbalance, **down-sampling** was applied.
+
+Final dataset size:
+
+| Metric        | Value |
+| ------------- | ----- |
+| Total reviews | 4325  |
+
+---
+
+# Text Preprocessing Pipeline
+
+The preprocessing stage included:
+
+* URL removal
+* Hashtag and mention removal
+* Punctuation cleaning
+* Tokenization
+* Stop-word removal
+* Lemmatization
+* Stemming
+
+This preprocessing pipeline was designed to standardize textual data before feature extraction and model training, and was applied exclusively to the Random Forest architectures.
+
+---
+
+# Models Evaluated
+
+The project compares several sentiment analysis approaches.
+
+## Lexicon-Based Models
+
+### VADER
+
+Lexicon-based sentiment analysis model based on polarity scores.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.55  |
+| Sensitivity | 0.99  |
+
+### TextBlob
+
+Rule-based sentiment analysis framework returning polarity values.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.41  |
+| Sensitivity | 0.99  |
+
+---
+
+## Pre-trained Models
+
+### Flair
+
+Contextual NLP framework using pre-trained sentiment classification models.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.64  |
+| Sensitivity | 0.97  |
+
+### BERT
+
+Transformer-based language model introduced by Google.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.97  |
+| Sensitivity | 0.93  |
+
+---
+
+## Machine Learning Models
+
+### Random Forest + TF-IDF
+
+Traditional Machine Learning pipeline using TF-IDF embeddings.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.76  |
+| Sensitivity | 0.78  |
+
+### Random Forest + Word2Vec
+
+Embedding-based representation using semantic word vectors.
+
+| Metric      | Score |
+| ----------- | ----- |
+| Specificity | 0.91  |
+| Sensitivity | 0.93  |
+
+---
+
+# Explainable AI
+
+The project includes several Explainable AI techniques to interpret model predictions.
+
+## Global Feature Importance
+
+Random Forest feature importance was used to identify the most influential words in classification decisions.
+
+### Example Important Features
+
+| Positive-oriented words | Negative-oriented words |
+| ----------------------- | ----------------------- |
+| great                   | dirty                   |
+| comfortable             | never                   |
+| clean                   | worst                   |
+| helpful                 | told                    |
+| friendly                | said                    |
+
+---
+
+## SHAP Analysis
+
+SHAP values were used to provide global explanations for model behavior.
+<img width="1758" height="1061" alt="image" src="https://github.com/user-attachments/assets/6d532c28-3961-48d6-ac09-edf2ec30958e" />
+
+
+Examples:
+
+* Positive SHAP values for words such as `"great"` indicate contribution toward positive predictions.
+* Negative SHAP values for words such as `"worst"` indicate contribution toward negative predictions.
+
+---
+
+## LIME Analysis
+
+LIME was applied for local interpretability in order to explain single predictions generated by:
+
+* Random Forest
+* Flair
+
+This allowed inspection of token-level contributions for individual reviews.
+
+---
+
+# Technologies Used
+
+| Category                | Technologies                        |
+| ----------------------- | ----------------------------------- |
+| Programming Language    | Python                              |
+| Data Processing         | Pandas, NumPy                       |
+| NLP                     | NLTK, TextBlob, Flair, Transformers |
+| Machine Learning        | Scikit-learn                        |
+| Embeddings              | TF-IDF, Word2Vec                    |
+| Explainability          | SHAP, LIME                          |
+| Database                | MongoDB                             |
+| Development Environment | Jupyter Notebook                    |
+
+---
+
+# Future Improvements
+
+Possible future extensions include:
+
+* Multi-class sentiment classification
+* Fine-tuning transformer models
+* Cross-domain generalization
+* Larger-scale datasets
+* Advanced explainability techniques
+* Hyperparameter optimization
+
+---
+
+# License
+
+This repository is intended for academic and educational purposes only.
+
 
